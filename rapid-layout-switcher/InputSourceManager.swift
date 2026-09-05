@@ -6,6 +6,8 @@ import Foundation
 final class InputSourceManager: NSObject, ObservableObject {
     @Published private(set) var sources: [KeyboardInputSource] = []
 
+    private var sourceCache: [String: TISInputSource] = [:]
+
     override init() {
         super.init()
         DistributedNotificationCenter.default().addObserver(
@@ -23,11 +25,13 @@ final class InputSourceManager: NSObject, ObservableObject {
 
     func refresh() {
         guard let list = TISCreateInputSourceList(nil, false)?.takeRetainedValue() as? [TISInputSource] else {
+            sourceCache = [:]
             sources = []
             return
         }
 
         var discovered: [KeyboardInputSource] = []
+        var discoveredSources: [String: TISInputSource] = [:]
         var seenIDs: Set<String> = []
 
         for source in list {
@@ -43,8 +47,10 @@ final class InputSourceManager: NSObject, ObservableObject {
             }
 
             discovered.append(KeyboardInputSource(id: id, displayName: name))
+            discoveredSources[id] = source
         }
 
+        sourceCache = discoveredSources
         sources = discovered.sorted {
             $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending
         }
@@ -64,11 +70,7 @@ final class InputSourceManager: NSObject, ObservableObject {
     }
 
     func selectInputSource(id: String) throws {
-        let filter = [kTISPropertyInputSourceID as String: id] as CFDictionary
-        guard
-            let matches = TISCreateInputSourceList(filter, false)?.takeRetainedValue() as? [TISInputSource],
-            let source = matches.first
-        else {
+        guard let source = sourceCache[id] else {
             throw InputSourceError.notAvailable(id)
         }
 

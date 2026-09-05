@@ -133,10 +133,16 @@ final class InputMonitor {
                 flags: event.flags,
                 configuration: configuration()
             ) {
-                onTrigger(side)
+                enqueueTrigger(side)
             }
         } else {
             detector.cancelPendingTrigger()
+        }
+    }
+
+    private func enqueueTrigger(_ side: TriggerSide) {
+        DispatchQueue.main.async { [weak self] in
+            self?.onTrigger(side)
         }
     }
 }
