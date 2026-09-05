@@ -58,14 +58,7 @@ final class InputMonitor {
 
         let eventTypes: [CGEventType] = [
             .flagsChanged,
-            .keyDown,
-            .leftMouseDown,
-            .rightMouseDown,
-            .otherMouseDown,
-            .leftMouseDragged,
-            .rightMouseDragged,
-            .otherMouseDragged,
-            .scrollWheel
+            .keyDown
         ]
         let mask = eventTypes.reduce(CGEventMask(0)) {
             $0 | (CGEventMask(1) << $1.rawValue)
