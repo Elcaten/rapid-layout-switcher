@@ -257,7 +257,8 @@ footer a:focus-visible {
 }
 
 .explanation,
-.app-preview {
+.app-preview,
+.menu-preview {
     display: grid;
     align-items: center;
     gap: clamp(48px, 9vw, 120px);
@@ -352,6 +353,16 @@ footer a:focus-visible {
 
 .app-preview {
     grid-template-columns: 0.75fr 1.25fr;
+}
+
+.menu-preview {
+    grid-template-columns: 1.25fr 0.75fr;
+}
+
+.menu-screenshot-frame {
+    width: 100%;
+    max-width: 586px;
+    justify-self: center;
 }
 
 .screenshot-frame {
@@ -456,13 +467,15 @@ footer a:hover {
     }
 
     .explanation,
-    .app-preview {
+    .app-preview,
+    .menu-preview {
         grid-template-columns: 1fr;
         gap: 60px;
         padding: 82px 0;
     }
 
-    .explanation .copy {
+    .explanation .copy,
+    .menu-preview .preview-copy {
         order: -1;
     }
 
