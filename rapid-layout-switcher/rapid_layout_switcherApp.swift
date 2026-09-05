@@ -15,21 +15,63 @@ struct RapidLayoutSwitcherApp: App {
         MenuBarExtra {
             MenuBarContent(controller: controller)
         } label: {
-            Label(
-                "Rapid Layout Switcher",
-                systemImage: controller.isRunning ? "keyboard.fill" : "keyboard"
-            )
+            MenuBarLabel(controller: controller)
         }
         .menuBarExtraStyle(.menu)
     }
 }
 
-private struct MenuBarContent: View {
+private struct MenuBarLabel: View {
     @ObservedObject var controller: AppController
-    @Environment(\.openWindow) private var openWindow
+    @ObservedObject private var inputSources: InputSourceManager
+    @ObservedObject private var settings: AppSettings
+
+    init(controller: AppController) {
+        self.controller = controller
+        inputSources = controller.inputSources
+        settings = controller.settings
+    }
 
     var body: some View {
-        Text(controller.statusMessage)
+        HStack(spacing: 7) {
+            let icon = LanguageCodeIcon.image(
+                for: inputSources.currentSource?.languageCode
+            )
+
+            Image(nsImage: icon)
+                .resizable()
+                .interpolation(.high)
+                .frame(width: icon.size.width, height: icon.size.height)
+                .accessibilityLabel(
+                    "Input source language \(inputSources.currentSource?.languageCode ?? "unknown")"
+                )
+
+            if settings.showsInputSourceNameInMenuBar {
+                Text(inputSources.currentSource?.displayName ?? "Unknown")
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+            }
+        }
+        .fixedSize(horizontal: true, vertical: false)
+        .id(
+            "\(settings.showsInputSourceNameInMenuBar)-"
+                + (inputSources.currentSource?.id ?? "unknown")
+        )
+    }
+}
+
+private struct MenuBarContent: View {
+    @ObservedObject var controller: AppController
+    @ObservedObject private var settings: AppSettings
+    @Environment(\.openWindow) private var openWindow
+
+    init(controller: AppController) {
+        self.controller = controller
+        settings = controller.settings
+    }
+
+    var body: some View {
+        Text("Status: \(controller.statusMessage)")
 
         Divider()
 
@@ -38,6 +80,14 @@ private struct MenuBarContent: View {
             NSApp.activate(ignoringOtherApps: true)
         }
         .keyboardShortcut(",")
+
+        Button(
+            settings.showsInputSourceNameInMenuBar
+                ? "Hide Input Source Name"
+                : "Show Input Source Name"
+        ) {
+            settings.showsInputSourceNameInMenuBar.toggle()
+        }
 
         Toggle(
             "Start at Login",

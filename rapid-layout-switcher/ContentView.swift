@@ -37,6 +37,11 @@ struct ContentView: View {
                 }
             }
 
+            Toggle(
+                "Show input source name next to language code",
+                isOn: $settings.showsInputSourceNameInMenuBar
+            )
+
             Divider()
 
             HStack(spacing: 8) {
@@ -64,6 +69,7 @@ struct ContentView: View {
             controller.refresh()
         }
     }
+
 
     private func triggerPicker(
         title: String,

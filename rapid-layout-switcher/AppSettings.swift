@@ -20,6 +20,10 @@ final class AppSettings: ObservableObject {
         didSet { defaults.set(rightInputSourceID, forKey: Keys.rightInputSourceID) }
     }
 
+    @Published var showsInputSourceNameInMenuBar: Bool {
+        didSet { defaults.set(showsInputSourceNameInMenuBar, forKey: Keys.showsInputSourceNameInMenuBar) }
+    }
+
     private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
@@ -28,6 +32,7 @@ final class AppSettings: ObservableObject {
         rightTrigger = ModifierKey(rawValue: defaults.string(forKey: Keys.rightTrigger) ?? "") ?? .command
         leftInputSourceID = defaults.string(forKey: Keys.leftInputSourceID) ?? "com.apple.keylayout.ABC"
         rightInputSourceID = defaults.string(forKey: Keys.rightInputSourceID) ?? "com.apple.keylayout.ABC"
+        showsInputSourceNameInMenuBar = defaults.bool(forKey: Keys.showsInputSourceNameInMenuBar)
     }
 
     var triggerConfiguration: TriggerConfiguration {
@@ -46,6 +51,7 @@ final class AppSettings: ObservableObject {
         static let rightTrigger = "rightTrigger"
         static let leftInputSourceID = "leftInputSourceID"
         static let rightInputSourceID = "rightInputSourceID"
+        static let showsInputSourceNameInMenuBar = "showsInputSourceNameInMenuBar"
     }
 }
 
