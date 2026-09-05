@@ -237,14 +237,23 @@ footer a:focus-visible {
     overflow: hidden;
     flex: 1;
     place-items: center;
-    border-radius: 14px;
     background: rgba(255, 255, 255, 0.025);
+}
+
+.notarization-screenshot {
+    background: none;
+    transform: scale(0.5);
+}
+.notarization-screenshot img {
+    border-radius: 14px;
+    overflow: hidden;
 }
 
 .launch-screenshot img {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 14px;
 }
 
 .explanation,
