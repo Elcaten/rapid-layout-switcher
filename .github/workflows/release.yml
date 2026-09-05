@@ -1,0 +1,84 @@
+name: Build and release macOS app
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build macOS app
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build universal Release app
+        env:
+          VERSION: ${{ github.ref_type == 'tag' && github.ref_name || '0.0.0' }}
+        run: |
+          set -euo pipefail
+
+          VERSION="${VERSION#v}"
+          BUILD_DIR="$RUNNER_TEMP/build"
+
+          xcodebuild \
+            -project rapid-layout-switcher.xcodeproj \
+            -target rapid-layout-switcher \
+            -configuration Release \
+            ARCHS="arm64 x86_64" \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            MARKETING_VERSION="$VERSION" \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" \
+            CONFIGURATION_BUILD_DIR="$BUILD_DIR" \
+            clean build
+
+          codesign --force --deep --sign - "$BUILD_DIR/rapid-layout-switcher.app"
+          codesign --verify --deep --strict --verbose=2 "$BUILD_DIR/rapid-layout-switcher.app"
+          lipo -archs "$BUILD_DIR/rapid-layout-switcher.app/Contents/MacOS/rapid-layout-switcher"
+
+      - name: Create DMG and checksum
+        run: |
+          set -euo pipefail
+
+          BUILD_DIR="$RUNNER_TEMP/build"
+          STAGING_DIR="$RUNNER_TEMP/dmg-staging"
+          RELEASE_DIR="$GITHUB_WORKSPACE/release-assets"
+          DMG_PATH="$RELEASE_DIR/rapid-layout-switcher.dmg"
+
+          mkdir -p "$STAGING_DIR" "$RELEASE_DIR"
+          cp -R "$BUILD_DIR/rapid-layout-switcher.app" "$STAGING_DIR/"
+          ln -s /Applications "$STAGING_DIR/Applications"
+
+          hdiutil create \
+            -volname "Rapid Layout Switcher" \
+            -srcfolder "$STAGING_DIR" \
+            -format UDZO \
+            -ov \
+            "$DMG_PATH"
+
+          shasum -a 256 "$DMG_PATH" > "$DMG_PATH.sha256"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapid-layout-switcher-macos
+          path: release-assets/
+          if-no-files-found: error
+
+      - name: Create GitHub Release and attach artifacts
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release-assets/rapid-layout-switcher.dmg
+            release-assets/rapid-layout-switcher.dmg.sha256
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
