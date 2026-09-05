@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Rapid Layout Switcher is a tiny macOS menu bar app for switching keyboard layouts with a tap of a modifier key."
+    />
+    <meta name="theme-color" content="#292927" />
+    <meta property="og:title" content="Rapid Layout Switcher" />
+    <meta
+      property="og:description"
+      content="Switch keyboard layouts with a single modifier-key tap."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/app-icon.png" />
+    <title>Rapid Layout Switcher</title>
+    <link rel="icon" href="assets/app-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top">Rapid Layout Switcher</a>
+      <a
+        class="header-link"
+        href="https://github.com/Elcaten/rapid-layout-switcher"
+        target="_blank"
+        rel="noreferrer"
+      >GitHub</a>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <img
+          class="app-icon"
+          src="assets/app-icon.png"
+          alt="Rapid Layout Switcher app icon"
+          width="160"
+          height="160"
+        />
+        <h1 id="hero-title">Rapid Layout Switcher</h1>
+        <p class="tagline">Your next keyboard layout is one tap away.</p>
+        <a
+          class="download-button"
+          href="https://github.com/Elcaten/rapid-layout-switcher/releases/latest/download/Rapid-Layout-Switcher.dmg"
+        >
+          <span aria-hidden="true">↓</span>
+          Download for macOS
+        </a>
+        <p class="requirements">Free · macOS 15.7+ · Apple silicon and Intel</p>
+      </section>
+
+      <section class="explanation section-shell" aria-labelledby="explanation-title">
+        <div class="key-demo" aria-label="Left Command selects ABC, right Command selects Russian">
+          <div class="key-pair">
+            <div class="keycap">
+              <span class="key-side">left</span>
+              <span class="key-symbol">⌘</span>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="layout-badge">ABC</div>
+          </div>
+          <div class="key-pair">
+            <div class="keycap">
+              <span class="key-side">right</span>
+              <span class="key-symbol">⌘</span>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="layout-badge">RU</div>
+          </div>
+        </div>
+
+        <div class="copy">
+          <p class="eyebrow">Switch without breaking your flow</p>
+          <h2 id="explanation-title">Put both Command keys to work.</h2>
+          <p>
+            Assign one keyboard layout to a left-side modifier and another to its
+            right-side twin. Tap the key by itself to switch instantly. Hold it
+            for a regular shortcut—everything keeps working as expected.
+          </p>
+        </div>
+      </section>
+
+      <section class="app-preview section-shell" aria-labelledby="preview-title">
+        <div class="preview-copy">
+          <p class="eyebrow">Set it once</p>
+          <h2 id="preview-title">Simple by design.</h2>
+          <p>
+            Pick a trigger and layout for each side, then close the window.
+            Rapid Layout Switcher stays quietly in your menu bar and shows the
+            language you are using.
+          </p>
+        </div>
+        <div class="screenshot-frame">
+          <img
+            src="assets/settings.png"
+            alt="Rapid Layout Switcher settings showing left Command assigned to ABC and right Command assigned to Russian"
+            width="1344"
+            height="876"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section class="details section-shell" aria-label="App details">
+        <article>
+          <span class="detail-icon" aria-hidden="true">⌨</span>
+          <h2>Your layouts</h2>
+          <p>Works with the input sources already enabled in macOS System Settings.</p>
+        </article>
+        <article>
+          <span class="detail-icon" aria-hidden="true">◎</span>
+          <h2>Menu bar native</h2>
+          <p>See the current language at a glance and launch the app at login.</p>
+        </article>
+        <article>
+          <span class="detail-icon" aria-hidden="true">◌</span>
+          <h2>Private</h2>
+          <p>Listen-only monitoring. No keystrokes stored, no scripts, and no Accessibility access.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>Rapid Layout Switcher for macOS</p>
+      <p>
+        <a href="https://github.com/Elcaten/rapid-layout-switcher">Source code</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/Elcaten/rapid-layout-switcher/releases">All releases</a>
+      </p>
+    </footer>
+  </body>
+</html>
