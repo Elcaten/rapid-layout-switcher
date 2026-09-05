@@ -62,6 +62,15 @@ a {
 
 .header-link {
     color: var(--muted);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--muted);
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .section-shell {
@@ -403,9 +412,15 @@ footer p {
     margin-bottom: 5px;
 }
 
-footer a:hover,
+footer a:hover {
+    color: var(--text);
+}
 .header-link:hover {
     color: var(--text);
+    border-bottom-color: var(--text);
+}
+.header-link:hover path {
+    fill: var(--text);
 }
 
 @media (max-width: 760px) {
