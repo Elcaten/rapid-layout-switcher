@@ -29,7 +29,7 @@ jobs:
 
           xcodebuild \
             -project rapid-layout-switcher.xcodeproj \
-            -target rapid-layout-switcher \
+            -target "Rapid Layout Switcher" \
             -configuration Release \
             ARCHS="arm64 x86_64" \
             ONLY_ACTIVE_ARCH=NO \
@@ -39,9 +39,9 @@ jobs:
             CONFIGURATION_BUILD_DIR="$BUILD_DIR" \
             clean build
 
-          codesign --force --deep --sign - "$BUILD_DIR/rapid-layout-switcher.app"
-          codesign --verify --deep --strict --verbose=2 "$BUILD_DIR/rapid-layout-switcher.app"
-          lipo -archs "$BUILD_DIR/rapid-layout-switcher.app/Contents/MacOS/rapid-layout-switcher"
+          codesign --force --deep --sign - "$BUILD_DIR/Rapid Layout Switcher.app"
+          codesign --verify --deep --strict --verbose=2 "$BUILD_DIR/Rapid Layout Switcher.app"
+          lipo -archs "$BUILD_DIR/Rapid Layout Switcher.app/Contents/MacOS/Rapid Layout Switcher"
 
       - name: Create DMG and checksum
         run: |
@@ -50,10 +50,10 @@ jobs:
           BUILD_DIR="$RUNNER_TEMP/build"
           STAGING_DIR="$RUNNER_TEMP/dmg-staging"
           RELEASE_DIR="$GITHUB_WORKSPACE/release-assets"
-          DMG_PATH="$RELEASE_DIR/rapid-layout-switcher.dmg"
+          DMG_PATH="$RELEASE_DIR/Rapid-Layout-Switcher.dmg"
 
           mkdir -p "$STAGING_DIR" "$RELEASE_DIR"
-          cp -R "$BUILD_DIR/rapid-layout-switcher.app" "$STAGING_DIR/"
+          cp -R "$BUILD_DIR/Rapid Layout Switcher.app" "$STAGING_DIR/"
           ln -s /Applications "$STAGING_DIR/Applications"
 
           hdiutil create \
@@ -77,8 +77,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            release-assets/rapid-layout-switcher.dmg
-            release-assets/rapid-layout-switcher.dmg.sha256
+            release-assets/Rapid-Layout-Switcher.dmg
+            release-assets/Rapid-Layout-Switcher.dmg.sha256
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

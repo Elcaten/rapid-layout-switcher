@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		938C2D32304C293D00A234BD /* rapid-layout-switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rapid-layout-switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		938C2D32304C293D00A234BD /* Rapid Layout Switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapid Layout Switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		938C2D33304C293D00A234BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				938C2D32304C293D00A234BD /* rapid-layout-switcher.app */,
+				938C2D32304C293D00A234BD /* Rapid Layout Switcher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		938C2D31304C293D00A234BD /* rapid-layout-switcher */ = {
+		938C2D31304C293D00A234BD /* Rapid Layout Switcher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 938C2D3D304C293F00A234BD /* Build configuration list for PBXNativeTarget "rapid-layout-switcher" */;
+			buildConfigurationList = 938C2D3D304C293F00A234BD /* Build configuration list for PBXNativeTarget "Rapid Layout Switcher" */;
 			buildPhases = (
 				938C2D2E304C293D00A234BD /* Sources */,
 				938C2D2F304C293D00A234BD /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				938C2D34304C293D00A234BD /* rapid-layout-switcher */,
 			);
-			name = "rapid-layout-switcher";
+			name = "Rapid Layout Switcher";
 			packageProductDependencies = (
 			);
-			productName = "rapid-layout-switcher";
-			productReference = 938C2D32304C293D00A234BD /* rapid-layout-switcher.app */;
+			productName = "Rapid Layout Switcher";
+			productReference = 938C2D32304C293D00A234BD /* Rapid Layout Switcher.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				938C2D31304C293D00A234BD /* rapid-layout-switcher */,
+				938C2D31304C293D00A234BD /* Rapid Layout Switcher */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +259,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rapid Layout Switcher";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -267,7 +268,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.elcaten.rapid-layout-switcher";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Rapid Layout Switcher";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -292,6 +293,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rapid Layout Switcher";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,7 +302,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.elcaten.rapid-layout-switcher";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Rapid Layout Switcher";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -323,7 +325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		938C2D3D304C293F00A234BD /* Build configuration list for PBXNativeTarget "rapid-layout-switcher" */ = {
+		938C2D3D304C293F00A234BD /* Build configuration list for PBXNativeTarget "Rapid Layout Switcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				938C2D3E304C293F00A234BD /* Debug */,
