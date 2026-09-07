@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { LetterButton, ModifierButton } from './KeyboardButton'
+import { Trackpad } from './Trackpad'
 
 export function KeyboardModel({
   className,
@@ -35,11 +36,7 @@ export function KeyboardModel({
           <LetterButton code="Period"> </LetterButton>
         </>
         <>
-          <ModifierButton
-            code="AltLeft"
-            variant="prominent"
-            onTrigger={() => onLangChange('EN')}
-          />
+          <ModifierButton code="AltLeft" />
           <ModifierButton
             code="MetaLeft"
             variant="prominent"
@@ -54,14 +51,10 @@ export function KeyboardModel({
             variant="prominent"
             onTrigger={() => onLangChange('RU')}
           />
-          <ModifierButton
-            code="AltRight"
-            variant="prominent"
-            onTrigger={() => onLangChange('RU')}
-          />
+          <ModifierButton code="AltRight" />
         </>
       </div>
-      <div className="mx-auto mt-4 h-18 w-48 rounded-t-xl border-x border-t border-[#b5b7ba] bg-linear-to-b from-[#d5d6d7] to-transparent sm:w-64 dark:border-[#383a42] dark:from-[#1a1b1e]" />
+      <Trackpad />
     </div>
   )
 }
