@@ -8,7 +8,7 @@ export default function PrimaryFeatures() {
   const [langCode, setLangCode] = useState<'EN' | 'RU'>('EN')
 
   return (
-    <div className="bg-white py-24 sm:py-32 dark:bg-gray-900">
+    <div className="bg-white pb-24 sm:pb-32 dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <div className="flex flex-col items-center gap-4">
           <h2 className="text-center text-2xl font-semibold tracking-tight text-balance text-gray-900 sm:text-4xl dark:text-white">
