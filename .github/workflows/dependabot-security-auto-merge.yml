@@ -1,0 +1,36 @@
+name: Dependabot security auto-merge
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: Enable auto-merge
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.repository == 'Elcaten/rapid-layout-switcher'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          alert-lookup: true
+          github-token: ${{ secrets.DEPENDABOT_ALERTS_TOKEN }}
+
+      - name: Enable merge-commit auto-merge for security updates
+        if: steps.dependabot-metadata.outputs.alert-state == 'OPEN'
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
